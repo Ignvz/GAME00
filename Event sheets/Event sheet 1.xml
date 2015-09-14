@@ -9,7 +9,20 @@
             <conditions>
                 <condition id="-2" name="On start of layout" sid="8074032668224545" type="System" />
             </conditions>
-            <actions />
+            <actions>
+                <action id="-10" name="Set value" sid="7844405197626484" type="PJ">
+                    <param id="0" name="Instance variable">VelSalto</param>
+                    <param id="1" name="Value">Sombra.8Direction.MaxSpeed*0.5</param>
+                </action>
+                <action id="-10" name="Set value" sid="7258306316653333" type="PJ">
+                    <param id="0" name="Instance variable">Vel</param>
+                    <param id="1" name="Value">Sombra.8Direction.MaxSpeed</param>
+                </action>
+                <action id="-10" name="Set value" sid="8667163748288893" type="PJ">
+                    <param id="0" name="Instance variable">VelEsquiva</param>
+                    <param id="1" name="Value">Sombra.8Direction.MaxSpeed*1.7</param>
+                </action>
+            </actions>
         </event-block>
         <event-group description="" sid="6845440236982117" title="Camara">
             <sub-events>
@@ -77,8 +90,9 @@
                 <action id="-1" name="Set X" sid="1533783806052019" type="PJ">
                     <param id="0" name="X">Sombra.X+7</param>
                 </action>
-                <action id="-1" name="Set X" sid="8567221375115214" type="Plataforma">
-                    <param id="0" name="X">Sombra.X</param>
+                <action id="-3" name="Set position" sid="1151889554522348" type="ZonaAtaque">
+                    <param id="0" name="X">PJ.X</param>
+                    <param id="1" name="Y">PJ.Y+46</param>
                 </action>
             </actions>
         </event-block>
@@ -90,9 +104,6 @@
             <actions>
                 <action id="-1" name="Set X" sid="1505985798962158" type="PJ">
                     <param id="0" name="X">Sombra.X-7</param>
-                </action>
-                <action id="-1" name="Set X" sid="3592325345978408" type="Plataforma">
-                    <param id="0" name="X">Sombra.X</param>
                 </action>
             </actions>
         </event-block>
@@ -110,125 +121,574 @@
                 <action id="-2" name="Set Y" sid="337358861430803" type="PJ">
                     <param id="0" name="Y">Sombra.Y-46</param>
                 </action>
-            </actions>
-        </event-block>
-        <event-block sid="2372071700977421">
-            <conditions>
-                <condition id="2" name="Key is down" sid="8156160170907088" type="Keyboard">
-                    <param id="0" name="Key">37 (Left arrow)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="8Direction" id="7" name="Simulate control" sid="5585597774060067" type="Sombra">
-                    <param id="0" name="Control">0</param>
-                </action>
-                <action id="7" name="Set mirrored" sid="5412823354801818" type="PJ">
-                    <param id="0" name="State">0</param>
-                </action>
-                <action id="7" name="Set mirrored" sid="6920594270227272" type="Sombra">
+                <action behavior="Platform" id="11" name="Set enabled" sid="5997516691581824" type="PJ">
                     <param id="0" name="State">0</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="1070679873455627">
+        <event-group description="" sid="856539831241665" title="Control PJ">
+            <sub-events>
+                <event-group description="" sid="1769011731963511" title="Movimiento">
+                    <sub-events>
+                        <event-block sid="2372071700977421">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="8156160170907088" type="Keyboard">
+                                    <param id="0" name="Key">37 (Left arrow)</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="8389692966224989" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="8941798929734143" type="PJ">
+                                    <param id="0" name="Instance variable">Ataque</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="5585597774060067" type="Sombra">
+                                    <param id="0" name="Control">0</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="5412823354801818" type="PJ">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="6920594270227272" type="Sombra">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7433773168846208" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Value">&quot;Izquierda&quot;</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="9600588634019296" type="ZonaAtaque">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="1070679873455627">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="9963488167935122" type="Keyboard">
+                                    <param id="0" name="Key">39 (Right arrow)</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="5591590960687105" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="8924573775188822" type="PJ">
+                                    <param id="0" name="Instance variable">Ataque</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="3109890167590071" type="Sombra">
+                                    <param id="0" name="Control">1</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="7557370955319321" type="PJ">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="8375144661779201" type="Sombra">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="2621236260341022" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Value">&quot;Derecha&quot;</param>
+                                </action>
+                                <action id="7" name="Set mirrored" sid="3534141266613836" type="ZonaAtaque">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4113130710565801">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="6467712213647848" type="Keyboard">
+                                    <param id="0" name="Key">40 (Down arrow)</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="21835139842323" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2895210062195164" type="PJ">
+                                    <param id="0" name="Instance variable">Ataque</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="3142091587821567" type="Sombra">
+                                    <param id="0" name="Control">3</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7035250471995641" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Value">&quot;Abajo&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="946268820556265">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="1530639473897098" type="Keyboard">
+                                    <param id="0" name="Key">38 (Up arrow)</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="7876939067029843" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="7079291957237253" type="PJ">
+                                    <param id="0" name="Instance variable">Ataque</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="6424187426395945" type="Sombra">
+                                    <param id="0" name="Control">2</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="6427854604570799" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Value">&quot;Arriba&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="1350394381143968" title="Esquiva">
+                    <sub-events>
+                        <event-block sid="2766429975387691">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="6912023646150425" type="Keyboard">
+                                    <param id="0" name="Key">16 (Shift)</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="7556056251459024" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="6538980505982303" type="PJ">
+                                    <param id="0" name="Instance variable">Saltando</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="366556730831372" type="PJ">
+                                    <param id="0" name="Instance variable">Cae</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4777372872764312" type="PJ">
+                                    <param id="0" name="Instance variable">Ataque</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="4922953794253531" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7366351512774772">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="5100858025972164" type="System" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="2486845995107713" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="6809195517813047" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Derecha&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="7175625103277723" type="PJ">
+                                    <param id="0" name="Animation">&quot;Esquiva&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="4311627041129292" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.VelEsquiva</param>
+                                </action>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="2109759339774921" type="Sombra">
+                                    <param id="0" name="Control">1</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="642406002742702" type="System">
+                                    <param id="0" name="Seconds">0.3</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="2400091840496208" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.Vel</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="4587499428967757" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="3641939399593635" type="PJ">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3820548233976749">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="6151933393058638" type="System" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="4189856950927022" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="4332814004908752" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Arriba&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="7654463486919888" type="PJ">
+                                    <param id="0" name="Animation">&quot;Esquiva&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="2032179619473851" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.VelEsquiva</param>
+                                </action>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="2456833583707526" type="Sombra">
+                                    <param id="0" name="Control">2</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="1849866166205316" type="System">
+                                    <param id="0" name="Seconds">0.3</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="6645927807362832" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.Vel</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="6531733809755582" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="5781239885655756" type="PJ">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="6042671117901673">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="9945665157425753" type="System" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="4091354100361945" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="9760133893459383" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Abajo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="2946061530678209" type="PJ">
+                                    <param id="0" name="Animation">&quot;Esquiva&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="1226495398277524" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.VelEsquiva</param>
+                                </action>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="3314548315411896" type="Sombra">
+                                    <param id="0" name="Control">3</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="6261309617577683" type="System">
+                                    <param id="0" name="Seconds">0.3</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="5652222143591192" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.Vel</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="1628670156512728" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="4997665033699642" type="PJ">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5894548104762279">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="6308977528405656" type="System" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="5970426899133062" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="8885218904719036" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Izquierda&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="187676247078655" type="PJ">
+                                    <param id="0" name="Animation">&quot;Esquiva&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="8605709036284425" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.VelEsquiva</param>
+                                </action>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="8494255278349062" type="Sombra">
+                                    <param id="0" name="Control">0</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="752537271322419" type="System">
+                                    <param id="0" name="Seconds">0.3</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="1893332325751748" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.Vel</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="5852220054455352" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="3905216522123189" type="PJ">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7741619490573225">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="3047216901886119" type="System" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="1378524013435815" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="7791087822974603" type="PJ">
+                                    <param id="0" name="Instance variable">Direccion</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Nada&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="5668426991055993" type="PJ">
+                                    <param id="0" name="Animation">&quot;Esquiva&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="3474865415592617" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.VelEsquiva</param>
+                                </action>
+                                <action behavior="8Direction" id="7" name="Simulate control" sid="4736528814663215" type="Sombra">
+                                    <param id="0" name="Control">1</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="1610388154622062" type="System">
+                                    <param id="0" name="Seconds">0.3</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="4653279049530479" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.Vel</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="6058608451183291" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="5812005771040168" type="PJ">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="2377622595590153" title="Salto">
+                    <sub-events>
+                        <event-block sid="5642883110409598">
+                            <conditions>
+                                <condition id="2" name="Key is down" sid="4145571453129295" type="Keyboard">
+                                    <param id="0" name="Key">32 (Space)</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2074741673598464" type="PJ">
+                                    <param id="0" name="Instance variable">Cae</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2739286928910536" type="PJ">
+                                    <param id="0" name="Instance variable">Esquiva</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="5521866223812941" type="PJ">
+                                    <param id="0" name="Instance variable">Saltando</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="7663972000286745" type="PJ">
+                                    <param id="0" name="Animation">&quot;Saltando&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block any="1" sid="2571593163062395">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="4248301672568364" type="System">
+                                    <param id="0" name="First value">Sombra.Y-PJ.Y-46</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">156</param>
+                                </condition>
+                                <condition id="3" name="On key released" sid="9882652516640919" type="Keyboard">
+                                    <param id="0" name="Key">32 (Space)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="9684734395759904" type="PJ">
+                                    <param id="0" name="Instance variable">Cae</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action behavior="Platform" id="11" name="Set enabled" sid="8268798679965726" type="PJ">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="6595909565026832" type="PJ">
+                                    <param id="0" name="Instance variable">Saltando</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3176725017893302">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="1782620146324323" type="System">
+                                    <param id="0" name="First value">Sombra.Y-PJ.Y</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Second value">46</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="4557979539542972" type="PJ">
+                                    <param id="0" name="Instance variable">Cae</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="6825553387286751" type="PJ">
+                                    <param id="0" name="Instance variable">Cae</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="4366123503513994" type="PJ">
+                                    <param id="0" name="Instance variable">Saltando</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="4766957894622334" type="System">
+                                    <param id="0" name="Variable">DistanciaPPJ</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="9433416313281746" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.Vel</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="3897117583540639" type="PJ">
+                                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8702745783291436">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="3213116155148464" type="System" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="4848702635625502" type="PJ">
+                                    <param id="0" name="Instance variable">Saltando</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="9734065419592018" type="PJ">
+                                    <param id="0" name="Instance variable">Cae</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="4889282874933288" type="PJ">
+                                    <param id="0" name="Y">Sombra.Y-50-DistanciaPPJ</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="5372667138700372" type="System">
+                                    <param id="0" name="Seconds">0.005</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="726312214790344" type="System">
+                                    <param id="0" name="Variable">DistanciaPPJ</param>
+                                    <param id="1" name="Value">5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="930590003054378">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="6672365933624896" type="System" />
+                                <condition id="-8" name="Is boolean instance variable set" sid="7944236486909021" type="PJ">
+                                    <param id="0" name="Instance variable">Saltando</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4668328991607346" type="PJ">
+                                    <param id="0" name="Instance variable">Cae</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="1496909639284264" type="System">
+                                    <param id="0" name="First value">PJ.VelSalto</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Second value">Sombra.8Direction.MaxSpeed</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="4188768748538087" type="System">
+                                    <param id="0" name="Seconds">0.015</param>
+                                </action>
+                                <action behavior="8Direction" id="4" name="Set max speed" sid="7062972258560677" type="Sombra">
+                                    <param id="0" name="Max Speed">PJ.VelSalto -5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="2756642768960484" title="Ataque">
+            <sub-events>
+                <event-block sid="1024635090977247">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="5574279029291252" type="Keyboard">
+                            <param id="0" name="Key">17 (Ctrl)</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="4702796222929022" type="PJ">
+                            <param id="0" name="Instance variable">Esquiva</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="5081699057052506" type="PJ">
+                            <param id="0" name="Instance variable">Ataque</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="4905367181684101" type="PJ">
+                            <param id="0" name="Instance variable">Ataque</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9009141754051771">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="3678097375989523" type="System" />
+                        <condition id="-8" name="Is boolean instance variable set" sid="8509849736847971" type="PJ">
+                            <param id="0" name="Instance variable">Ataque</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="3596987091566893" type="PJ">
+                            <param id="0" name="Animation">&quot;Ataque&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="11" name="Set collisions enabled" sid="6918932363375806" type="ZonaAtaque">
+                            <param id="0" name="Collisions">1</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="5528290581769069" type="System">
+                            <param id="0" name="Seconds">0.4</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="8334241748526716" type="PJ">
+                            <param id="0" name="Animation">&quot;Default&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="11" name="Set collisions enabled" sid="1158442861561383" type="ZonaAtaque">
+                            <param id="0" name="Collisions">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="8016551504665139" type="PJ">
+                            <param id="0" name="Instance variable">Ataque</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="2720117469458152">
             <conditions>
-                <condition id="2" name="Key is down" sid="9963488167935122" type="Keyboard">
-                    <param id="0" name="Key">39 (Right arrow)</param>
+                <condition id="0" name="On collision with another object" sid="2057160535781025" type="Enemigo">
+                    <param id="0" name="Object">ZonaAtaque</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="3682115423864887" type="System">
+                    <param id="0" name="First value">PJ.Tierra</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">Enemigo.Tierra</param>
                 </condition>
             </conditions>
             <actions>
-                <action behavior="8Direction" id="7" name="Simulate control" sid="3109890167590071" type="Sombra">
-                    <param id="0" name="Control">1</param>
-                </action>
-                <action id="7" name="Set mirrored" sid="7557370955319321" type="PJ">
-                    <param id="0" name="State">1</param>
-                </action>
-                <action id="7" name="Set mirrored" sid="8375144661779201" type="Sombra">
-                    <param id="0" name="State">1</param>
-                </action>
+                <action id="-9" name="Destroy" sid="3303351825532776" type="Enemigo" />
             </actions>
         </event-block>
-        <event-block sid="4113130710565801">
+        <event-block any="1" sid="7280261397637198">
             <conditions>
-                <condition id="2" name="Key is down" sid="6467712213647848" type="Keyboard">
-                    <param id="0" name="Key">40 (Down arrow)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="8Direction" id="7" name="Simulate control" sid="3142091587821567" type="Sombra">
-                    <param id="0" name="Control">3</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="946268820556265">
-            <conditions>
-                <condition id="2" name="Key is down" sid="1530639473897098" type="Keyboard">
-                    <param id="0" name="Key">38 (Up arrow)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="8Direction" id="7" name="Simulate control" sid="6424187426395945" type="Sombra">
-                    <param id="0" name="Control">2</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="5642883110409598">
-            <conditions>
-                <condition id="2" name="Key is down" sid="4145571453129295" type="Keyboard">
-                    <param id="0" name="Key">32 (Space)</param>
-                </condition>
-                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2074741673598464" type="PJ">
-                    <param id="0" name="Instance variable">Cae</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-2" name="Set Y" sid="4256006531504229" type="PJ">
-                    <param id="0" name="Y">lerp(PJ.Y,sombra.Y-600,0.03)</param>
-                </action>
-                <action id="-13" name="Set boolean" sid="5521866223812941" type="PJ">
+                <condition id="-8" name="Is boolean instance variable set" sid="2056057702748717" type="PJ">
                     <param id="0" name="Instance variable">Saltando</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block any="1" sid="2571593163062395">
-            <conditions>
-                <condition id="-8" name="Compare two values" sid="4248301672568364" type="System">
-                    <param id="0" name="First value">Sombra.Y-PJ.Y</param>
-                    <param id="1" name="Comparison">5</param>
-                    <param id="2" name="Second value">196</param>
                 </condition>
-                <condition id="3" name="On key released" sid="9882652516640919" type="Keyboard">
-                    <param id="0" name="Key">32 (Space)</param>
+                <condition id="-8" name="Is boolean instance variable set" sid="9891437171911374" type="PJ">
+                    <param id="0" name="Instance variable">Cae</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-13" name="Set boolean" sid="9684734395759904" type="PJ">
-                    <param id="0" name="Instance variable">Cae</param>
-                    <param id="1" name="Value">1</param>
-                </action>
-                <action id="-9" name="Set value" sid="7519782554720845" type="System">
-                    <param id="0" name="Variable">DistanciaPPJ</param>
-                    <param id="1" name="Value">PJ.Y</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="3176725017893302">
-            <conditions>
-                <condition id="-8" name="Compare two values" sid="1782620146324323" type="System">
-                    <param id="0" name="First value">Sombra.Y-PJ.Y</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Second value">55</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-13" name="Set boolean" sid="6825553387286751" type="PJ">
-                    <param id="0" name="Instance variable">Cae</param>
+                <action id="-13" name="Set boolean" sid="8764027179590847" type="PJ">
+                    <param id="0" name="Instance variable">Tierra</param>
                     <param id="1" name="Value">0</param>
                 </action>
-                <action id="-13" name="Set boolean" sid="4366123503513994" type="PJ">
-                    <param id="0" name="Instance variable">Saltando</param>
-                    <param id="1" name="Value">0</param>
+            </actions>
+        </event-block>
+        <event-block sid="2140679804630412">
+            <conditions>
+                <condition id="-22" name="Else" sid="1128149246999673" type="System" />
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="2317343736257377" type="PJ">
+                    <param id="0" name="Instance variable">Tierra</param>
+                    <param id="1" name="Value">1</param>
                 </action>
             </actions>
         </event-block>
