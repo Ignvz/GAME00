@@ -66,9 +66,16 @@
                 <instance-variable name="Saltando" sid="8013786963313447" type="boolean" />
                 <instance-variable name="Cae" sid="65298724440289" type="boolean" />
                 <instance-variable comment="Distancia para saltar" name="Salto" sid="3570683892325392" type="number" />
+                <instance-variable name="VelSalto" sid="3974372680808548" type="number" />
+                <instance-variable name="Vel" sid="8251834045645529" type="number" />
+                <instance-variable name="Esquiva" sid="8991010505102692" type="boolean" />
+                <instance-variable name="VelEsquiva" sid="9471069341133888" type="number" />
+                <instance-variable name="Direccion" sid="2893413371257579" type="string" />
+                <instance-variable name="Ataque" sid="2763498607254387" type="boolean" />
+                <instance-variable name="Tierra" sid="4578411232915733" type="boolean" />
             </instance-variables>
             <behaviors>
-                <behavior-type name="Platform" sid="1941835040866025">
+                <behavior-type name="Platform" sid="1376486663330583">
                     <behavior id="Platform" />
                 </behavior-type>
             </behaviors>
@@ -83,9 +90,18 @@
                         </collision-poly>
                     </frame>
                 </animation>
+                <animation framecount="1" loop="0" name="Esquiva" pingpong="0" repeatcount="1" repeatto="0" sid="139957229861286" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="Saltando" pingpong="0" repeatcount="1" repeatto="0" sid="6788438995790717" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="Ataque" pingpong="0" repeatcount="1" repeatto="0" sid="8203078702824323" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Sprite" sid="7566891868326373">
+        <object-type name="Piso" sid="7566891868326373">
             <plugin id="Sprite" />
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4068696984835358" speed="5">
@@ -128,20 +144,7 @@
         <object-type name="Keyboard" sid="608701234554583">
             <plugin id="Keyboard" />
         </object-type>
-        <object-type name="Plataforma" sid="2318778498258189">
-            <plugin id="Sprite" />
-            <behaviors>
-                <behavior-type name="Solid" sid="1393655330564852">
-                    <behavior id="solid" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3013223665161356" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Sprite3" sid="2893619169966942">
+        <object-type name="Barrera" sid="2893619169966942">
             <plugin id="Sprite" />
             <behaviors>
                 <behavior-type name="Solid" sid="3528109905234448">
@@ -159,6 +162,124 @@
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4221063968165515" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ZonaAtaque" sid="6046528102259925">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7806189225874118" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.48" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                            <point x="0.48" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Enemigo" sid="4599092161613226">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Tierra" sid="8904227425240419" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Solid" sid="7749023034581239">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="11" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1403193349014011" speed="8">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.302083" y="0.828125" />
+                            <point x="0.708333" y="0.817708" />
+                            <point x="0.739583" y="0.953125" />
+                            <point x="0.3125" y="0.953125" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
