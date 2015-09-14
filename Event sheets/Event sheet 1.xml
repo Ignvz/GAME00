@@ -175,7 +175,7 @@
         <event-block sid="5642883110409598">
             <conditions>
                 <condition id="2" name="Key is down" sid="4145571453129295" type="Keyboard">
-                    <param id="0" name="Key">32 (Space)</param>
+                    <param id="0" name="Key">32 (Barra Espaciadora)</param>
                 </condition>
                 <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2074741673598464" type="PJ">
                     <param id="0" name="Instance variable">Cae</param>
@@ -199,7 +199,7 @@
                     <param id="2" name="Second value">196</param>
                 </condition>
                 <condition id="3" name="On key released" sid="9882652516640919" type="Keyboard">
-                    <param id="0" name="Key">32 (Space)</param>
+                    <param id="0" name="Key">32 (Barra Espaciadora)</param>
                 </condition>
             </conditions>
             <actions>
