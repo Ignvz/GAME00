@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="DistanciaPPJ" sid="6132529181357323" static="0" type="number">0</variable>
+        <variable comment="Para velosidad de camara" constant="0" name="PJspeedCamera" sid="822232072964307" static="0" type="number">0</variable>
+        <event-block sid="7312705403597755">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8074032668224545" type="System" />
+            </conditions>
+            <actions />
+        </event-block>
+        <event-group description="" sid="6845440236982117" title="Camara">
+            <sub-events>
+                <event-block sid="5034178557477341">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="4659328698884326" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="8606393731312166" type="System">
+                            <param id="0" name="Variable">PJspeedCamera</param>
+                            <param id="1" name="Value">(Sombra.8Direction.Speed/10000)+0.001</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1176286586541453">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="8070780351880986" type="Camara">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">500</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="4109318815518738" type="Camara">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">1400</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="6015400577380316" type="Camara">
+                            <param id="0" name="X">lerp(Self.X,PJ.X,PJspeedCamera)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5136158012863143">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="6070893905751206" type="Camara">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">500</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="9132219717220599" type="Camara">
+                            <param id="0" name="X">500</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7699171848779317">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="5238431877211259" type="Camara">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">1400</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="8810064463421196" type="Camara">
+                            <param id="0" name="X">1400</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="8775591234538072">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="1838757089773583" type="System" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="1533783806052019" type="PJ">
+                    <param id="0" name="X">Sombra.X+7</param>
+                </action>
+                <action id="-1" name="Set X" sid="8567221375115214" type="Plataforma">
+                    <param id="0" name="X">Sombra.X</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="702611881648359">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="1036931757808387" type="System" />
+                <condition id="7" name="Is mirrored" sid="4856749378399751" type="PJ" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="1505985798962158" type="PJ">
+                    <param id="0" name="X">Sombra.X-7</param>
+                </action>
+                <action id="-1" name="Set X" sid="3592325345978408" type="Plataforma">
+                    <param id="0" name="X">Sombra.X</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4239406690251827">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="7823976919817087" type="System" />
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="5318855471784242" type="PJ">
+                    <param id="0" name="Instance variable">Cae</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="655743122815429" type="PJ">
+                    <param id="0" name="Instance variable">Saltando</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="337358861430803" type="PJ">
+                    <param id="0" name="Y">Sombra.Y-46</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2372071700977421">
+            <conditions>
+                <condition id="2" name="Key is down" sid="8156160170907088" type="Keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="5585597774060067" type="Sombra">
+                    <param id="0" name="Control">0</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="5412823354801818" type="PJ">
+                    <param id="0" name="State">0</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="6920594270227272" type="Sombra">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1070679873455627">
+            <conditions>
+                <condition id="2" name="Key is down" sid="9963488167935122" type="Keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="3109890167590071" type="Sombra">
+                    <param id="0" name="Control">1</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="7557370955319321" type="PJ">
+                    <param id="0" name="State">1</param>
+                </action>
+                <action id="7" name="Set mirrored" sid="8375144661779201" type="Sombra">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4113130710565801">
+            <conditions>
+                <condition id="2" name="Key is down" sid="6467712213647848" type="Keyboard">
+                    <param id="0" name="Key">40 (Down arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="3142091587821567" type="Sombra">
+                    <param id="0" name="Control">3</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="946268820556265">
+            <conditions>
+                <condition id="2" name="Key is down" sid="1530639473897098" type="Keyboard">
+                    <param id="0" name="Key">38 (Up arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="7" name="Simulate control" sid="6424187426395945" type="Sombra">
+                    <param id="0" name="Control">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5642883110409598">
+            <conditions>
+                <condition id="2" name="Key is down" sid="4145571453129295" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2074741673598464" type="PJ">
+                    <param id="0" name="Instance variable">Cae</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="4256006531504229" type="PJ">
+                    <param id="0" name="Y">lerp(PJ.Y,sombra.Y-600,0.03)</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="5521866223812941" type="PJ">
+                    <param id="0" name="Instance variable">Saltando</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="2571593163062395">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="4248301672568364" type="System">
+                    <param id="0" name="First value">Sombra.Y-PJ.Y</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">196</param>
+                </condition>
+                <condition id="3" name="On key released" sid="9882652516640919" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="9684734395759904" type="PJ">
+                    <param id="0" name="Instance variable">Cae</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="7519782554720845" type="System">
+                    <param id="0" name="Variable">DistanciaPPJ</param>
+                    <param id="1" name="Value">PJ.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3176725017893302">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="1782620146324323" type="System">
+                    <param id="0" name="First value">Sombra.Y-PJ.Y</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">55</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="6825553387286751" type="PJ">
+                    <param id="0" name="Instance variable">Cae</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="4366123503513994" type="PJ">
+                    <param id="0" name="Instance variable">Saltando</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
